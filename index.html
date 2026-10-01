@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Aman Manikpuri — AI/LLM Engineer</title>
+<meta name="description" content="Aman Manikpuri — AI/LLM Engineer building RAG systems, LangGraph agents, and n8n workflow automation. Portfolio, projects, and contact." />
+<meta name="author" content="Aman Manikpuri" />
+<meta property="og:title" content="Aman Manikpuri — AI/LLM Engineer" />
+<meta property="og:description" content="Building RAG systems, LangGraph agents, and n8n workflow automation. Open to full-time roles and freelance projects." />
+<meta property="og:type" content="website" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%E2%9A%A1%3C/text%3E%3C/svg%3E" />
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg: #0a0a0b;
+    --bg-elev: #111113;
+    --bg-card: #141418;
+    --border: #1f1f24;
+    --border-strong: #2a2a30;
+    --text: #e8e8ea;
+    --text-dim: #9a9aa3;
+    --text-mute: #6b6b74;
+    --accent: #a3e635;
+    --accent-dim: #65a30d;
+  }
+  * { font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif; }
+  code, .mono { font-family: 'JetBrains Mono', ui-monospace, monospace; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  .gradient-text {
+    background: linear-gradient(135deg, #e8e8ea 0%, #9a9aa3 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .accent-text { color: var(--accent); }
+  .card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    transition: border-color 180ms ease, transform 180ms ease;
+  }
+  .card:hover { border-color: var(--border-strong); }
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.25rem 0.65rem;
+    border-radius: 999px;
+    background: #1a1a1f;
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+  }
+  .chip-mono { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; }
+  .section-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--accent);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+  .section-label::before {
+    content: '';
+    width: 1.5rem;
+    height: 1px;
+    background: var(--accent);
+    opacity: 0.6;
+  }
+  .link-arrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    color: var(--text-dim);
+    transition: color 180ms ease, gap 180ms ease;
+  }
+  .link-arrow:hover { color: var(--accent); gap: 0.55rem; }
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.25rem;
+    background: var(--accent);
+    color: #0a0a0b;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: background 180ms ease, transform 180ms ease;
+  }
+  .btn-primary:hover { background: #bef264; }
+  .btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.25rem;
+    background: transparent;
+    color: var(--text);
+    border: 1px solid var(--border-strong);
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: border-color 180ms ease, color 180ms ease;
+  }
+  .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+  .grid-bg {
+    background-image:
+      linear-gradient(rgba(163, 230, 53, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(163, 230, 53, 0.03) 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+  .orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.15;
+    pointer-events: none;
+  }
+  .orb-1 {
+    width: 400px; height: 400px;
+    background: #a3e635;
+    top: -100px; right: -100px;
+  }
+  .orb-2 {
+    width: 300px; height: 300px;
+    background: #22d3ee;
+    bottom: 10%; left: -80px;
+    opacity: 0.08;
+  }
+  .status-dot {
+    width: 8px; height: 8px;
+    background: var(--accent);
+    border-radius: 50%;
+    box-shadow: 0 0 0 0 rgba(163, 230, 53, 0.6);
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%   { box-shadow: 0 0 0 0 rgba(163, 230, 53, 0.6); }
+    70%  { box-shadow: 0 0 0 8px rgba(163, 230, 53, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(163, 230, 53, 0); }
+  }
+  .nav-link { color: var(--text-dim); font-size: 0.875rem; transition: color 180ms ease; }
+  .nav-link:hover { color: var(--text); }
+  .divider { height: 1px; background: var(--border); }
+  .metric-value { color: var(--accent); font-family: 'JetBrains Mono', monospace; font-weight: 600; }
+  html { scroll-behavior: smooth; }
+  @media (max-width: 640px) {
+    .orb-1 { width: 250px; height: 250px; }
+    .orb-2 { display: none; }
+  }
+</style>
+</head>
+<body class="min-h-screen">
+
+<nav class="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-black/40 border-b border-[var(--border)]">
+  <div class="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
+    <a href="#top" class="font-semibold tracking-tight text-[var(--text)]">
+      Aman Manikpuri
+    </a>
+    <div class="hidden md:flex items-center gap-7">
+      <a href="#about" class="nav-link">About</a>
+      <a href="#experience" class="nav-link">Experience</a>
+      <a href="#projects" class="nav-link">Projects</a>
+      <a href="#skills" class="nav-link">Skills</a>
+      <a href="#contact" class="nav-link">Contact</a>
+    </div>
+    <a href="#contact" class="btn-primary text-xs md:text-sm" style="padding: 0.5rem 0.9rem;">
+      Hire me
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+</nav>
+
+<section id="top" class="relative overflow-hidden pt-32 pb-24 md:pt-40 md:pb-32">
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="absolute inset-0 grid-bg opacity-30"></div>
+
+  <div class="relative max-w-5xl mx-auto px-6">
+    <div class="inline-flex items-center gap-2 chip mb-8">
+      <span class="status-dot"></span>
+      <span class="mono chip-mono">Available for work</span>
+    </div>
+
+    <h1 class="text-4xl sm:text-5xl md:text-7xl font-bold tracking-tight leading-[1.05] mb-6">
+      <span class="gradient-text">AI/LLM engineer</span><br />
+      <span class="text-[var(--text-dim)]">building agents that</span><br />
+      <span class="accent-text">actually ship.</span>
+    </h1>
+
+    <p class="text-lg md:text-xl text-[var(--text-dim)] max-w-2xl leading-relaxed mb-10">
+      I'm <span class="text-[var(--text)]">Aman Manikpuri</span> — I build production RAG systems, LangGraph agents, and n8n workflow automation. Six months inside Innodata evaluating LLM output, a stack of shipped projects, and one goal: AI that works outside demos.
+    </p>
+
+    <div class="flex flex-wrap gap-3 mb-14">
+      <a href="#contact" class="btn-primary">
+        Start a project
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </a>
+      <a href="resume.pdf" class="btn-ghost" target="_blank" rel="noopener">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+        Download CV
+      </a>
+      <a href="https://github.com/itsamanmanik" target="_blank" rel="noopener" class="btn-ghost">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.37.5 0 5.87 0 12.5c0 5.3 3.44 9.8 8.21 11.39.6.11.82-.26.82-.58v-2.04c-3.34.73-4.04-1.42-4.04-1.42-.55-1.39-1.33-1.77-1.33-1.77-1.09-.74.08-.72.08-.72 1.2.08 1.84 1.24 1.84 1.24 1.07 1.84 2.81 1.31 3.5 1 .11-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.11-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.29-1.55 3.3-1.23 3.3-1.23.65 1.66.24 2.88.11 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.49 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.69.82.58A12 12 0 0 0 24 12.5C24 5.87 18.63.5 12 .5z"/></svg>
+        GitHub
+      </a>
+    </div>
+
+    <div class="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-[var(--text-mute)]">
+      <span class="flex items-center gap-2">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        Based in India · Open to relocation
+      </span>
+      <span class="flex items-center gap-2">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 5L2 7"/></svg>
+        amanmanikpuri04@gmail.com
+      </span>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section id="about" class="py-20 md:py-28">
+  <div class="max-w-5xl mx-auto px-6">
+    <div class="section-label">About</div>
+    <div class="grid md:grid-cols-5 gap-10">
+      <div class="md:col-span-3">
+        <h2 class="text-2xl md:text-3xl font-semibold mb-6 leading-snug">
+          I evaluate LLMs for a living, then build the systems that keep them honest.
+        </h2>
+        <div class="space-y-4 text-[var(--text-dim)] leading-relaxed">
+          <p>
+            After my B.Tech in Computer Science (CSVTU, 2025) I spent six months at <span class="text-[var(--text)]">Innodata</span> as an AI/LLM Analyst — evaluating model outputs for factuality, instruction adherence, and hallucination across code, QA, summarization, and structured-generation tasks. That inside-view of where LLMs fail now shapes everything I build.
+          </p>
+          <p>
+            My work focuses on <span class="text-[var(--text)]">RAG pipelines, agentic systems, and workflow automation</span>. I ship projects with real evaluation harnesses, not just happy-path demos — my travel agent runs 10/10 on a custom eval suite; my LLM observability dashboard scores three models in parallel for hallucination and faithfulness.
+          </p>
+          <p>
+            Outside production work I take on <span class="text-[var(--text)]">n8n automation and AI agent builds</span> as a freelancer. Fixed scope, fixed price, delivered with runbooks.
+          </p>
+        </div>
+      </div>
+      <div class="md:col-span-2 space-y-3">
+        <div class="card rounded-lg p-5">
+          <div class="text-[var(--text-mute)] text-xs mono uppercase tracking-wider mb-2">Currently</div>
+          <div class="text-[var(--text)] font-medium">Freelancing · job-hunting</div>
+          <div class="text-sm text-[var(--text-dim)] mt-1">AI Engineer / GenAI roles</div>
+        </div>
+        <div class="card rounded-lg p-5">
+          <div class="text-[var(--text-mute)] text-xs mono uppercase tracking-wider mb-2">Focus</div>
+          <div class="text-[var(--text)] font-medium">RAG · Agents · n8n</div>
+          <div class="text-sm text-[var(--text-dim)] mt-1">LangChain, LangGraph, Python</div>
+        </div>
+        <div class="card rounded-lg p-5">
+          <div class="text-[var(--text-mute)] text-xs mono uppercase tracking-wider mb-2">Education</div>
+          <div class="text-[var(--text)] font-medium">B.Tech CS — CSVTU</div>
+          <div class="text-sm text-[var(--text-dim)] mt-1">Bhilai · 2021 – 2025</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section id="experience" class="py-20 md:py-28">
+  <div class="max-w-5xl mx-auto px-6">
+    <div class="section-label">Experience</div>
+    <h2 class="text-2xl md:text-3xl font-semibold mb-10 gradient-text">Where I've been.</h2>
+
+    <div class="space-y-6">
+      <div class="card rounded-xl p-6 md:p-8">
+        <div class="flex flex-wrap items-start justify-between gap-3 mb-4">
+          <div>
+            <h3 class="text-xl font-semibold">AI/LLM Analyst</h3>
+            <div class="text-[var(--text-dim)] mt-1">Innodata India Pvt. Ltd. · Noida</div>
+          </div>
+          <div class="mono text-sm text-[var(--text-mute)]">Dec 2025 — May 2026</div>
+        </div>
+        <ul class="space-y-2 text-[var(--text-dim)] leading-relaxed">
+          <li class="flex gap-3"><span class="accent-text mt-1">▸</span><span>Evaluated LLM outputs for factual accuracy, instruction adherence, reasoning quality, and consistency across code, QA, summarization, and structured generation.</span></li>
+          <li class="flex gap-3"><span class="accent-text mt-1">▸</span><span>Applied structured annotation rubrics against project requirements, maintaining quality standards across prompt-response pairs and edge-case scenarios.</span></li>
+          <li class="flex gap-3"><span class="accent-text mt-1">▸</span><span>Reviewed RAG pipeline outputs for grounding, retrieval relevance, and hallucination reduction — feedback directly improved model response quality.</span></li>
+          <li class="flex gap-3"><span class="accent-text mt-1">▸</span><span>Identified failure patterns in multi-turn conversations and complex instruction-following, contributing to iterative prompt and pipeline improvements.</span></li>
+        </ul>
+        <div class="flex flex-wrap gap-2 mt-5">
+          <span class="chip">LLM Evaluation</span>
+          <span class="chip">RAG</span>
+          <span class="chip">Prompt Engineering</span>
+          <span class="chip">Hallucination Detection</span>
+        </div>
+      </div>
+
+      <div class="card rounded-xl p-6 md:p-8">
+        <div class="flex flex-wrap items-start justify-between gap-3 mb-4">
+          <div>
+            <h3 class="text-xl font-semibold">Full Stack Developer <span class="text-sm text-[var(--text-mute)] font-normal">(Part-time)</span></h3>
+            <div class="text-[var(--text-dim)] mt-1">Smedketing</div>
+          </div>
+          <div class="mono text-sm text-[var(--text-mute)]">Apr 2023 — Nov 2025</div>
+        </div>
+        <ul class="space-y-2 text-[var(--text-dim)] leading-relaxed">
+          <li class="flex gap-3"><span class="accent-text mt-1">▸</span><span>Developed and maintained full-stack web applications using React.js, Node.js, Express, and MySQL.</span></li>
+          <li class="flex gap-3"><span class="accent-text mt-1">▸</span><span>Designed and implemented RESTful APIs for seamless frontend–backend communication.</span></li>
+          <li class="flex gap-3"><span class="accent-text mt-1">▸</span><span>Optimized database queries and application performance — improved response times and data retrieval efficiency.</span></li>
+          <li class="flex gap-3"><span class="accent-text mt-1">▸</span><span>Integrated third-party APIs, implemented authentication, error handling, and debugging workflows.</span></li>
+        </ul>
+        <div class="flex flex-wrap gap-2 mt-5">
+          <span class="chip">React.js</span>
+          <span class="chip">Node.js</span>
+          <span class="chip">Express</span>
+          <span class="chip">MySQL</span>
+          <span class="chip">REST APIs</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section id="projects" class="py-20 md:py-28">
+  <div class="max-w-5xl mx-auto px-6">
+    <div class="section-label">Projects</div>
+    <h2 class="text-2xl md:text-3xl font-semibold mb-2 gradient-text">Built, deployed, evaluated.</h2>
+    <p class="text-[var(--text-dim)] mb-10">Each one shipped with its own eval harness — not just a demo video.</p>
+
+    <div class="grid gap-6">
+
+      <article class="card rounded-xl p-6 md:p-8">
+        <div class="flex flex-wrap items-start justify-between gap-3 mb-3">
+          <div>
+            <div class="flex items-center gap-3 flex-wrap">
+              <h3 class="text-xl font-semibold">Travel Planning AI Agent</h3>
+              <span class="chip chip-mono">Flagship</span>
+            </div>
+            <div class="text-sm text-[var(--text-mute)] mt-1 mono">Agentic Tool-Use · Multi-hop RAG · Vector Memory</div>
+          </div>
+          <div class="mono text-sm text-[var(--text-mute)]">Jul 2026</div>
+        </div>
+        <ul class="space-y-2 text-[var(--text-dim)] leading-relaxed mb-5">
+          <li class="flex gap-3"><span class="accent-text mt-1">▸</span><span>Autonomous 2-day trip planner orchestrating <span class="text-[var(--text)]">3 tools</span> (weather, web search, Wikipedia multi-hop RAG) via an LLM planner on <span class="text-[var(--text)]">Groq (Llama 3.3 70B)</span>.</span></li>
+          <li class="flex gap-3"><span class="accent-text mt-1">▸</span><span>Dual-layer memory — conversation context + a <span class="text-[var(--text)]">ChromaDB vector store</span> for cross-session preference recall. Zero API cost.</span></li>
+          <li class="flex gap-3"><span class="accent-text mt-1">▸</span><span>Deployed as a <span class="text-[var(--text)]">FastAPI REST service</span> and reasoning-transparent chat UI, containerized with Docker on Render.</span></li>
+          <li class="flex gap-3"><span class="accent-text mt-1">▸</span><span>Validated <span class="metric-value">10/10</span> on a custom eval harness covering tool reliability, memory recall, and planning accuracy.</span></li>
+        </ul>
+        <div class="flex flex-wrap gap-2 mb-5">
+          <span class="chip">FastAPI</span>
+          <span class="chip">LangChain</span>
+          <span class="chip">ChromaDB</span>
+          <span class="chip">Groq Llama 3.3 70B</span>
+          <span class="chip">Docker</span>
+          <span class="chip">Render</span>
+        </div>
+        <div class="flex gap-4 flex-wrap items-center">
+          <a href="https://github.com/itsamanmanik/travel-planning-agent" target="_blank" rel="noopener" class="link-arrow mono text-sm">GitHub <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
+          <a href="https://travel-planning-agent-abj1.onrender.com" target="_blank" rel="noopener" class="link-arrow mono text-sm">Live demo <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
+          <span class="mono text-xs text-[var(--text-mute)]">· first load ~30s (free tier wakes on request)</span>
+        </div>
+      </article>
+
+      <article class="card rounded-xl p-6 md:p-8">
+        <div class="flex flex-wrap items-start justify-between gap-3 mb-3">
+          <div>
+            <h3 class="text-xl font-semibold">LLM Evaluation Dashboard</h3>
+            <div class="text-sm text-[var(--text-mute)] mt-1 mono">Hallucination Detection · Web Grounding</div>
+          </div>
+          <div class="mono text-sm text-[var(--text-mute)]">Jun 2026</div>
+        </div>
+        <ul class="space-y-2 text-[var(--text-dim)] leading-relaxed mb-5">
+          <li class="flex gap-3"><span class="accent-text mt-1">▸</span><span>Full-stack LLM observability platform evaluating <span class="text-[var(--text)]">Groq Llama 3.3 70B, Gemini 2.0 Flash, and Mistral Small</span> in parallel — scoring hallucination, relevance, faithfulness, and toxicity.</span></li>
+          <li class="flex gap-3"><span class="accent-text mt-1">▸</span><span>Web grounding layer via Wikipedia REST API auto-detects real-time queries and injects current context before LLM calls — reducing factual hallucination on time-sensitive questions.</span></li>
+          <li class="flex gap-3"><span class="accent-text mt-1">▸</span><span><span class="metric-value">5-page</span> Streamlit dashboard: live score trends, model leaderboard radar chart, cost tracker, latency distribution, and threshold-breach alert feed.</span></li>
+        </ul>
+        <div class="flex flex-wrap gap-2 mb-5">
+          <span class="chip">Streamlit</span>
+          <span class="chip">Multi-model Eval</span>
+          <span class="chip">Wikipedia API</span>
+          <span class="chip">Observability</span>
+        </div>
+        <div class="flex gap-4 flex-wrap">
+          <a href="https://github.com/itsamanmanik/LLM_observatory" target="_blank" rel="noopener" class="link-arrow mono text-sm">GitHub <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
+        </div>
+      </article>
+
+      <article class="card rounded-xl p-6 md:p-8">
+        <div class="flex flex-wrap items-start justify-between gap-3 mb-3">
+          <div>
+            <h3 class="text-xl font-semibold">Multi-Agent Coding Assistant</h3>
+            <div class="text-sm text-[var(--text-mute)] mt-1 mono">LangGraph · Local LLM · Zero API Cost</div>
+          </div>
+          <div class="mono text-sm text-[var(--text-mute)]">Jun 2025</div>
+        </div>
+        <ul class="space-y-2 text-[var(--text-dim)] leading-relaxed mb-5">
+          <li class="flex gap-3"><span class="accent-text mt-1">▸</span><span>3-agent pipeline — <span class="text-[var(--text)]">Planner → Coder → Debugger</span> — orchestrated via LangGraph with LangChain + Ollama for fully local inference.</span></li>
+          <li class="flex gap-3"><span class="accent-text mt-1">▸</span><span>Agents communicate via shared state: Planner decomposes, Coder writes Python, Debugger reviews and fixes before final output.</span></li>
+          <li class="flex gap-3"><span class="accent-text mt-1">▸</span><span>Streamlit UI with model selector, per-agent output panels, and one-click code download.</span></li>
+        </ul>
+        <div class="flex flex-wrap gap-2 mb-5">
+          <span class="chip">LangGraph</span>
+          <span class="chip">LangChain</span>
+          <span class="chip">Ollama</span>
+          <span class="chip">Streamlit</span>
+        </div>
+        <div class="flex gap-4 flex-wrap">
+          <a href="https://github.com/itsamanmanik/Langchain-Multiagent-Assistant" target="_blank" rel="noopener" class="link-arrow mono text-sm">GitHub <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section id="skills" class="py-20 md:py-28">
+  <div class="max-w-5xl mx-auto px-6">
+    <div class="section-label">Stack</div>
+    <h2 class="text-2xl md:text-3xl font-semibold mb-10 gradient-text">What I build with.</h2>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div class="card rounded-xl p-6">
+        <div class="flex items-center gap-2 mb-4">
+          <span class="accent-text">◆</span>
+          <h3 class="font-semibold">AI / LLM</h3>
+        </div>
+        <div class="flex flex-wrap gap-2">
+          <span class="chip">LangChain</span>
+          <span class="chip">LangGraph</span>
+          <span class="chip">RAG</span>
+          <span class="chip">Prompt Eng.</span>
+          <span class="chip">Agentic AI</span>
+          <span class="chip">n8n</span>
+          <span class="chip">AI Automation</span>
+        </div>
+      </div>
+
+      <div class="card rounded-xl p-6">
+        <div class="flex items-center gap-2 mb-4">
+          <span class="accent-text">◆</span>
+          <h3 class="font-semibold">ML &amp; Data</h3>
+        </div>
+        <div class="flex flex-wrap gap-2">
+          <span class="chip">PyTorch</span>
+          <span class="chip">TensorFlow</span>
+          <span class="chip">Scikit-learn</span>
+          <span class="chip">NLP</span>
+          <span class="chip">Pandas</span>
+          <span class="chip">NumPy</span>
+        </div>
+      </div>
+
+      <div class="card rounded-xl p-6">
+        <div class="flex items-center gap-2 mb-4">
+          <span class="accent-text">◆</span>
+          <h3 class="font-semibold">Vector DBs</h3>
+        </div>
+        <div class="flex flex-wrap gap-2">
+          <span class="chip">ChromaDB</span>
+          <span class="chip">FAISS</span>
+          <span class="chip">Pinecone</span>
+        </div>
+      </div>
+
+      <div class="card rounded-xl p-6">
+        <div class="flex items-center gap-2 mb-4">
+          <span class="accent-text">◆</span>
+          <h3 class="font-semibold">Backend</h3>
+        </div>
+        <div class="flex flex-wrap gap-2">
+          <span class="chip">Python</span>
+          <span class="chip">FastAPI</span>
+          <span class="chip">REST APIs</span>
+          <span class="chip">SQL</span>
+          <span class="chip">MongoDB</span>
+          <span class="chip">Node.js</span>
+          <span class="chip">Express</span>
+        </div>
+      </div>
+
+      <div class="card rounded-xl p-6">
+        <div class="flex items-center gap-2 mb-4">
+          <span class="accent-text">◆</span>
+          <h3 class="font-semibold">Cloud &amp; DevOps</h3>
+        </div>
+        <div class="flex flex-wrap gap-2">
+          <span class="chip">AWS (EC2, S3, IAM)</span>
+          <span class="chip">Docker</span>
+          <span class="chip">Render</span>
+          <span class="chip">Git</span>
+        </div>
+      </div>
+
+      <div class="card rounded-xl p-6">
+        <div class="flex items-center gap-2 mb-4">
+          <span class="accent-text">◆</span>
+          <h3 class="font-semibold">Certifications</h3>
+        </div>
+        <div class="flex flex-wrap gap-2">
+          <span class="chip">Data Analytics — Deloitte</span>
+          <span class="chip">Prompt Engineering — Udemy</span>
+          <span class="chip">Python App Dev — Udemy</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section id="contact" class="py-24 md:py-32 relative overflow-hidden">
+  <div class="orb orb-1" style="right: auto; left: 50%; transform: translateX(-50%); top: 20%; opacity: 0.08;"></div>
+  <div class="relative max-w-3xl mx-auto px-6 text-center">
+    <div class="section-label mx-auto justify-center" style="justify-content: center;">Contact</div>
+    <h2 class="text-3xl md:text-5xl font-bold tracking-tight mb-5 gradient-text">
+      Have an AI project in mind?
+    </h2>
+    <p class="text-lg text-[var(--text-dim)] mb-10 max-w-xl mx-auto">
+      Open to full-time roles (AI Engineer, GenAI Engineer, Data Science) and freelance projects — n8n automation, RAG systems, and AI agents. Fastest reply over email.
+    </p>
+
+    <div class="flex flex-wrap justify-center gap-3 mb-12">
+      <a href="mailto:amanmanikpuri04@gmail.com" class="btn-primary">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 5L2 7"/></svg>
+        amanmanikpuri04@gmail.com
+      </a>
+      <a href="https://linkedin.com/in/aman-manikpuri" target="_blank" rel="noopener" class="btn-ghost">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.063 2.063 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        LinkedIn
+      </a>
+      <a href="https://github.com/itsamanmanik" target="_blank" rel="noopener" class="btn-ghost">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.37.5 0 5.87 0 12.5c0 5.3 3.44 9.8 8.21 11.39.6.11.82-.26.82-.58v-2.04c-3.34.73-4.04-1.42-4.04-1.42-.55-1.39-1.33-1.77-1.33-1.77-1.09-.74.08-.72.08-.72 1.2.08 1.84 1.24 1.84 1.24 1.07 1.84 2.81 1.31 3.5 1 .11-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.11-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.29-1.55 3.3-1.23 3.3-1.23.65 1.66.24 2.88.11 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.49 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.69.82.58A12 12 0 0 0 24 12.5C24 5.87 18.63.5 12 .5z"/></svg>
+        GitHub
+      </a>
+    </div>
+
+    <div class="text-sm text-[var(--text-mute)]">
+      +91 93400 87703
+    </div>
+  </div>
+</section>
+
+<footer class="border-t border-[var(--border)]">
+  <div class="max-w-5xl mx-auto px-6 py-6 text-sm text-[var(--text-mute)] text-center">
+    © 2026 Aman Manikpuri
+  </div>
+</footer>
+
+<script>
+  // Smooth active-section highlight in nav
+  const links = document.querySelectorAll('.nav-link');
+  const sections = Array.from(links).map(l => document.querySelector(l.getAttribute('href')));
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const id = e.target.id;
+        links.forEach(l => {
+          const active = l.getAttribute('href') === '#' + id;
+          l.style.color = active ? 'var(--text)' : 'var(--text-dim)';
+        });
+      }
+    });
+  }, { rootMargin: '-40% 0px -55% 0px' });
+  sections.forEach(s => s && observer.observe(s));
+</script>
+
+</body>
+</html>
